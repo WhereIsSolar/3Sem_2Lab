@@ -4,7 +4,6 @@
 
 using namespace std;
 
-// Вспомогательные функции
 int hash1(int key, int capacity) {
     return key % capacity;
 }

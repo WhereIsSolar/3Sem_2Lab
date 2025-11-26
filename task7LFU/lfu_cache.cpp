@@ -10,7 +10,6 @@ void initCache(LFUCache &cache, int capacity) {
     // Оставил данную функцию т.к. делал по образу и подобию прошлых АСД
 }
 
-// Остальной код БЕЗ ИЗМЕНЕНИЙ
 int findLFUNode(LFUCache &cache) {
     int minFreq = 1000000;
     int oldestTimestamp = 1000000;

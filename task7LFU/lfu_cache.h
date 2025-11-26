@@ -9,29 +9,38 @@ struct LFUNode {
     string value;
     int frequency;
     int timestamp;
+    
+    LFUNode() : key(-1), value(""), frequency(0), timestamp(-1) {}
 };
 
 struct LFUCache {
-    HashTable keyTable;  // key -> index in nodes array
-    Array nodes;         // Array of LFUNode
+    HashTable keyTable;
+    Array nodes;
     int capacity;
     int size;
-    int counter;         // global timestamp counter
+    int counter;
+    
+    // КОНСТРУКТОР с инициализацией емкости
+    LFUCache(int cap) {
+        capacity = cap;
+        size = 0;
+        counter = 0;
+        initTable(keyTable, capacity * 2);
+        initArray(nodes, capacity);
+        
+        // Инициализируем массив пустыми узлами
+        for (int i = 0; i < capacity; i++) {
+            addEnd(nodes, "EMPTY");
+        }
+    }
 };
 
-// Инициализация кэша
+// Инициализация кэша (теперь через конструктор)
 void initCache(LFUCache &cache, int capacity);
 
-// Добавление/обновление значения по ключу
 void set(LFUCache &cache, int key, const string &value);
-
-// Получение значения по ключу
 string get(LFUCache &cache, int key);
-
-// Вывод состояния кэша
 void printCache(LFUCache &cache);
-
-// Освобождение памяти
 void destroyCache(LFUCache &cache);
 
 #endif

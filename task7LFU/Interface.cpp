@@ -54,8 +54,8 @@ int main() {
     cin >> capacity;
     cin.ignore();
     
-    LFUCache cache;
-    initCache(cache, capacity);
+    // Теперь создаем кэш через конструктор
+    LFUCache cache(capacity);
     
     cout << "=== LFU Cache CLI ===" << endl;
     cout << "Commands:" << endl;
